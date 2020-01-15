@@ -10,47 +10,62 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Map View-->
+        <!--MapVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapView" customModule="Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapVC" customModule="Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="snG-OL-741">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snG-OL-741">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="882"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9E-9p-aLn">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="131"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83i-7M-qm8">
+                                        <rect key="frame" x="8" y="55" width="398" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="X0B-gf-z61"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="19"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.64510783931050519" blue="0.2027153466662075" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="83i-7M-qm8" secondAttribute="trailing" constant="8" id="Byr-TH-ssD"/>
+                                    <constraint firstAttribute="bottom" secondItem="83i-7M-qm8" secondAttribute="bottom" constant="26" id="EMx-rc-bwZ"/>
                                     <constraint firstAttribute="height" constant="131" id="g6A-Tb-6Ix"/>
+                                    <constraint firstItem="83i-7M-qm8" firstAttribute="leading" secondItem="D9E-9p-aLn" secondAttribute="leading" constant="8" id="sye-AK-jsG"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39T-83-fUH">
-                                <rect key="frame" x="344" y="812" width="50" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39T-83-fUH">
+                                <rect key="frame" x="327" y="812" width="67" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Lq6-IG-GfU"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Lq6-IG-GfU"/>
                                     <constraint firstAttribute="height" constant="50" id="Mn0-vR-IUD"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" image="locationButton"/>
                                 <connections>
                                     <action selector="centerMapBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8iv-Pt-sGC"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IT9-H9-9ld">
-                                <rect key="frame" x="0.0" y="862" width="414" height="34"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="882" width="414" height="14"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="39T-83-fUH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="7kN-tH-nqI"/>
                             <constraint firstItem="D9E-9p-aLn" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="8Pp-jy-K05"/>
                             <constraint firstItem="snG-OL-741" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="A5e-Xm-dl6"/>
+                            <constraint firstAttribute="bottom" secondItem="IT9-H9-9ld" secondAttribute="bottom" id="OOe-3D-ynJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="39T-83-fUH" secondAttribute="trailing" constant="20" id="TSa-ef-fuz"/>
-                            <constraint firstItem="IT9-H9-9ld" firstAttribute="top" secondItem="39T-83-fUH" secondAttribute="bottom" id="YL6-4T-xlQ"/>
-                            <constraint firstAttribute="bottom" secondItem="IT9-H9-9ld" secondAttribute="bottom" id="cW6-0O-r56"/>
+                            <constraint firstItem="IT9-H9-9ld" firstAttribute="top" secondItem="39T-83-fUH" secondAttribute="bottom" constant="20" id="YL6-4T-xlQ"/>
                             <constraint firstItem="IT9-H9-9ld" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dPw-8d-ok0"/>
                             <constraint firstItem="D9E-9p-aLn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="m8i-XC-RrZ"/>
                             <constraint firstItem="D9E-9p-aLn" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="pub-94-DGp"/>
@@ -71,4 +86,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="75.669642857142847"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="locationButton" width="67" height="67"/>
+    </resources>
 </document>
