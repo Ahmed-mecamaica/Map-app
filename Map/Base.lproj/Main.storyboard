@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snG-OL-741">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="882"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="895"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9E-9p-aLn">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="131"/>
@@ -43,7 +43,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39T-83-fUH">
-                                <rect key="frame" x="327" y="812" width="67" height="50"/>
+                                <rect key="frame" x="327" y="825" width="67" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Lq6-IG-GfU"/>
                                     <constraint firstAttribute="height" constant="50" id="Mn0-vR-IUD"/>
@@ -54,8 +54,11 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IT9-H9-9ld">
-                                <rect key="frame" x="0.0" y="882" width="414" height="14"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="895" width="414" height="1"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="5Bj-9P-aXE"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -71,14 +74,15 @@
                             <constraint firstItem="D9E-9p-aLn" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="pub-94-DGp"/>
                             <constraint firstItem="snG-OL-741" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rGn-Ec-fJ0"/>
                             <constraint firstItem="IT9-H9-9ld" firstAttribute="top" secondItem="snG-OL-741" secondAttribute="bottom" id="uRh-H4-fDz"/>
-                            <constraint firstItem="39T-83-fUH" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="vo9-bK-jXy"/>
                             <constraint firstItem="snG-OL-741" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xts-cY-eFz"/>
                             <constraint firstAttribute="trailing" secondItem="IT9-H9-9ld" secondAttribute="trailing" id="zWQ-0U-bde"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="heightViewConstraint" destination="5Bj-9P-aXE" id="UjI-Ff-Hkk"/>
                         <outlet property="mapView" destination="snG-OL-741" id="22r-cj-ndS"/>
+                        <outlet property="pullUpView" destination="IT9-H9-9ld" id="Puh-yb-b6x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
