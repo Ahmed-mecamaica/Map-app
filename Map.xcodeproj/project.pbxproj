@@ -13,6 +13,7 @@
 		2995F6F623CB433E00D2ACC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2995F6F423CB433E00D2ACC7 /* Main.storyboard */; };
 		2995F6F823CB433F00D2ACC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2995F6F723CB433F00D2ACC7 /* Assets.xcassets */; };
 		2995F6FB23CB433F00D2ACC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2995F6F923CB433F00D2ACC7 /* LaunchScreen.storyboard */; };
+		2998C5BB23D48A6E00D8DBE9 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998C5BA23D48A6E00D8DBE9 /* PhotoCell.swift */; };
 		2D40DD251D6680365F5BC4AB /* Pods_Map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9596C0A4171C0C1DB96C4D /* Pods_Map.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		2995F6F723CB433F00D2ACC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2995F6FA23CB433F00D2ACC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2995F6FC23CB433F00D2ACC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2998C5BA23D48A6E00D8DBE9 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		65F364841181FCA0DE2F0C8A /* Pods-Map.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Map.debug.xcconfig"; path = "Target Support Files/Pods-Map/Pods-Map.debug.xcconfig"; sourceTree = "<group>"; };
 		6962EB8663030CB4A3965DD6 /* Pods-Map.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Map.release.xcconfig"; path = "Target Support Files/Pods-Map/Pods-Map.release.xcconfig"; sourceTree = "<group>"; };
 		8D9596C0A4171C0C1DB96C4D /* Pods_Map.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Map.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				2993C55E23CF409800E1FD82 /* DroppablePin.swift */,
+				2998C5BA23D48A6E00D8DBE9 /* PhotoCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2998C5BB23D48A6E00D8DBE9 /* PhotoCell.swift in Sources */,
 				2995F6F323CB433E00D2ACC7 /* MapVC.swift in Sources */,
 				2993C55F23CF409800E1FD82 /* DroppablePin.swift in Sources */,
 				2995F6F123CB433E00D2ACC7 /* AppDelegate.swift in Sources */,
