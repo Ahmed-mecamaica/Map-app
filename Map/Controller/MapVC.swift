@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Alamofire
+import AlamofireImage
 
 class MapVC: UIViewController,UIGestureRecognizerDelegate {
     
@@ -19,6 +21,8 @@ class MapVC: UIViewController,UIGestureRecognizerDelegate {
     var progressLbl: UILabel?
     var flowLayout = UICollectionViewFlowLayout()
     var collectionView: UICollectionView?
+    var imageArrayUrls = [String]()
+    var imageArray = [UIImage]()
     var screenSize = UIScreen.main.bounds
     @IBOutlet weak var pullUpView: UIView!
     @IBOutlet weak var heightViewConstraint: NSLayoutConstraint!
@@ -64,6 +68,7 @@ class MapVC: UIViewController,UIGestureRecognizerDelegate {
         }
     }
     @objc func animatViewDown(){
+        cancelAllSession()
         heightViewConstraint.constant = 0
         UIView.animate(withDuration: 0.3){
             self.view.layoutIfNeeded()
@@ -123,11 +128,11 @@ extension MapVC: MKMapViewDelegate{
         removePin()
         removeSpinner()
         removeProgressLbl()
+        cancelAllSession()
         animatViewUp()
         swapping()
         addSpinner()
         addProgressLbl()
-        
         
         let touchPoint = sender.location(in: mapView)
         let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
@@ -135,6 +140,19 @@ extension MapVC: MKMapViewDelegate{
         mapView.addAnnotation(annotation)
         let coordinateRegion = MKCoordinateRegion(center: touchCoordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
+        retrieveUrl(forAnnotation: annotation) { (finished) in
+            if finished {
+                self.retreiveImage(handler: { (finished) in
+                    if finished{
+                        self.removeSpinner()
+                        self.removeProgressLbl()
+                        //reload collection view
+                    }
+                })
+            }
+            
+        }
+        
     }
     
     func removePin() {
@@ -143,6 +161,41 @@ extension MapVC: MKMapViewDelegate{
         }
     }
     
+    func retrieveUrl(forAnnotation annotation: DroppablePin, handler: @escaping (_ status: Bool) -> ()){
+        imageArrayUrls = []
+        
+        Alamofire.request(flickerUrl(forApiKey: apikey, withAnnotation: annotation, numberOfPhotos: 40)).responseJSON{(response) in
+            guard let json = response.result.value as? Dictionary<String, AnyObject> else { return }
+            let dictPhoto = json["photos"] as! Dictionary<String, AnyObject>
+            let dictPhotosArray = dictPhoto["photo"] as! [Dictionary<String, AnyObject>]
+            for photo in dictPhotosArray{
+                let postUrl = "https://live.staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!)_q_d.jpg"
+                //https://live.staticflickr.com/3943/15764107365_59966860b5_5k_d.jpg
+                self.imageArrayUrls.append(postUrl)
+            }
+            handler(true)
+        }
+    }
+    func retreiveImage(handler: @escaping (_ status: Bool) -> ()){
+        imageArray = []
+        for url in imageArrayUrls{
+            Alamofire.request(url).responseImage { (response) in
+                guard let image = response.result.value else { return }
+                self.imageArray.append(image)
+                self.progressLbl?.text = "\(self.imageArray.count)/40 IMAGES DOWNLOADED"
+                if self.imageArray.count == self.imageArrayUrls.count {
+                    handler(true)
+                }
+            }
+        }
+    }
+    
+    func cancelAllSession(){
+        Alamofire.SessionManager.default.session.getTasksWithCompletionHandler{(sessionData, uploadData, downloadData) in
+            sessionData.forEach({ $0.cancel() })
+            downloadData.forEach({ $0.cancel() })
+        }
+    }
 }
 extension MapVC: CLLocationManagerDelegate{
     func configurLocationService(){
