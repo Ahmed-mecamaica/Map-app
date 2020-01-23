@@ -40,6 +40,8 @@ class MapVC: UIViewController,UIGestureRecognizerDelegate {
         collectionView?.dataSource = self
         collectionView?.backgroundColor = #colorLiteral(red: 1, green: 0.6241641045, blue: 0, alpha: 1)
         pullUpView.addSubview(collectionView!)
+        registerForPreviewing(with: self, sourceView: collectionView!)
+
     }
     
     func addDoubleTap(){
@@ -226,6 +228,24 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource{
         cell.addSubview(imageView)
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let popVC = storyboard?.instantiateViewController(withIdentifier: "popVC") as? PopVC else { return }
+        popVC.initData(forImage: imageArray[indexPath.row])
+        present(popVC, animated: true, completion: nil)
+    }
     
+}
+extension MapVC: UIViewControllerPreviewingDelegate{
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = collectionView?.indexPathForItem(at: location), let cell = collectionView?.cellForItem(at: indexPath) else { return nil }
+        
+        guard let popVC = storyboard?.instantiateViewController(withIdentifier: "popVC") as? PopVC else { return nil }
+        popVC.initData(forImage: imageArray[indexPath.row])
+        previewingContext.sourceRect = cell.contentView.frame
+        return popVC
+    }
     
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: self)
+    }
 }
